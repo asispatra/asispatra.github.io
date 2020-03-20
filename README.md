@@ -6,7 +6,11 @@ asispatra website contents.
 * [JobScan](https://www.jobscan.co/)
 * [ZTM Open Source Community](https://github.com/zero-to-mastery/start-here-guidelines)
 * [ZTM Job Board](https://github.com/zero-to-mastery/ZtM-Job-Board)
-
+* [https://cruip.com/ (This is my favourite)](https://cruip.com/)
+* [Mashup Templates](http://www.mashup-template.com/templates.html)
+* [Bootstrap Templates](https://mdbootstrap.com/freebies/)
+* [Creative Tim Templates](https://www.creative-tim.com/bootstrap-themes/ui-kit?direction=asc&sort=price)
+* [15 Web Developer Portfolios to Inspire You](https://www.freecodecamp.org/news/15-web-developer-portfolios-to-inspire-you-137fb1743cae/)
 
 
 
