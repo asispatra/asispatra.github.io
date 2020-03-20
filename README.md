@@ -51,3 +51,26 @@ The changes may take a few hours to take effect. If you succeeded, congrats! You
 
 
 If you have any questions, reach out in our private Discord chat community in the #helpme channel!
+
+Resources: Email
+
+**Chrome Extensions:**
+---------------
+* [Hunter](https://chrome.google.com/webstore/detail/hunter/hgmhmanijnjhaffoampdlllchpolkdnj?hl=en)
+* [Contact Out](https://chrome.google.com/webstore/detail/find-anyones-email-contac/jjdemeiffadmmjhkbbpglgnlgeafomjo?hl=en)
+* [Email Extractor](https://chrome.google.com/webstore/detail/email-extractor/jdianbbpnakhcmfkcckaboohfgnngfcc?hl=en)
+
+**Here is the sample email from the previous video:**
+```
+    Hey $BOB,
+    I saw your presentation at $CONFERENCE last year on Youtube (rr point to some work they have done).
+    Great stuff; loved what you did with $FOO, in particular
+    $COMMENT_PROVING_YOU_KNOW_WHAT_YOU'RE_TALKING_ABOUT.
+    I'm also a $FOO developer. I noticed that your company is hiring
+    or $ROLE. I’d love to be a part of your team. Do you have a
+    few minutes to chat on Thursday about what you guys are doing?
+     
+    Thanks,
+    Yourname
+    Your website or any public profile link
+```
