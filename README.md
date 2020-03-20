@@ -3,6 +3,8 @@ asispatra website contents.
 
 ### Important links
 * [ResumeMaker.Online | Design your resume for free!](https://www.resumemaker.online/)
+* [Engineering Resume Samples](https://www.cakeresume.com/Engineering-resume-samples)
+* [This resume does not exist](https://thisresumedoesnotexist.com/)
 * [JobScan](https://www.jobscan.co/)
 * [ZTM Open Source Community](https://github.com/zero-to-mastery/start-here-guidelines)
 * [ZTM Job Board](https://github.com/zero-to-mastery/ZtM-Job-Board)
