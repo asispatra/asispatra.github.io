@@ -74,3 +74,46 @@ Resources: Email
     Yourname
     Your website or any public profile link
 ```
+
+**Resources: Where To Find Jobs?**
+---------------
+Here is a list of my recommended resources for finding that dream job:
+
+My Favourites:
+
+[LinkedIn Jobs](https://www.linkedin.com/jobs/)
+
+[HackerNews Who is Hiring](https://news.ycombinator.com/item?id=17902901) (You will need to search for most recent month)
+
+[AngelList](https://angel.co/jobs)
+
+[Seen](https://links.zerotomastery.io/seen_udemymci): One company that I think is doing something interesting and may help you get a job is Seen by Indeed.
+
+Seen is a platform that helps software engineers find jobs at top tech companies. It's 100% free for all candidates (students) and gives you Career Coaching, Resume Review, Interview Prep and Salary Negotiation.. they charge the recruiter, so if you are a good candidate, they get you hired and they make money through the company and not you... (it's free to you).  Seen tries to find a job from their list of 10,000 companies.
+
+Evaluate if this is something you might want to attempt but I know a few people who have had a good experience with this... keep in mind this is an affiliate link but I think they are doing something great: [click here to check it out](https://links.zerotomastery.io/seen_udemymci)
+
+
+Remote Jobs:
+
+https://designmodo.com/jobs/
+
+https://www.remotelist.pw/
+
+https://remoteonly.io/
+
+https://weworkremotely.com/
+
+https://remoteok.io/
+
+Others:
+
+[Hired](https://links.zerotomastery.io/hired_udemymci) (FYI, this is my personal referral link)
+
+[TripleByte](https://triplebyte.com/)
+
+[Whitetruffle](https://whitetruffle.com/)
+
+[Zip Recruiter](https://www.ziprecruiter.com/)
+
+[Meetup.com](https://www.meetup.com/)
