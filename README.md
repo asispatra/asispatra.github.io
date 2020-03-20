@@ -2,4 +2,4 @@
 asispatra website contents.
 
 ### Important links
-* ![ResumeMaker.Online | Design your resume for free!](https://www.resumemaker.online/)
+* [ResumeMaker.Online | Design your resume for free!](https://www.resumemaker.online/)
