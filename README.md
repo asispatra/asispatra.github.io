@@ -36,3 +36,18 @@ Part of Udemy Course on Mastering the Coding Interview
 ✅ Technical Knowledge/Skills should include what they are looking for. Only show years if it is impressive  
 ✅ Include only sections/items that are impressive: Experience, Projects, Education, Technical Skills  
 ✅ No typos or bad grammar  
+
+
+**Optional Exercise: Github Master**
+---------------
+
+Please note that this is completely optional (mainly for fun) exercise.
+
+Don't have a good Github history? Don't worry! If you are looking to add a little flare to your Github profile, which a lot of recruiters check, you can try using this tool: https://github.com/aneagoie/gitfiti
+
+It will generate a file for you full of git commands which you will be able to run and design your Github history whichever way you want. Make sure you read the instructions and understand what it does!
+
+The changes may take a few hours to take effect. If you succeeded, congrats! You just finished the easiest, and silliest exercise of this course!
+
+
+If you have any questions, reach out in our private Discord chat community in the #helpme channel!
