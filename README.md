@@ -117,3 +117,8 @@ Others:
 [Zip Recruiter](https://www.ziprecruiter.com/)
 
 [Meetup.com](https://www.meetup.com/)
+
+
+**Monthly Industry Updates**
+---------------
+Every month, I accumulate all of the best resources and articles, as well as free resources around the web for programmers. If you want to stay up to date with the industry and make sure you don't miss any important news, you can check out the monthly newsletters [here](https://zerotomastery.io/blog/).
