@@ -4,6 +4,8 @@ asispatra website contents.
 ### Important links
 * [ResumeMaker.Online | Design your resume for free!](https://www.resumemaker.online/)
 * [JobScan](https://www.jobscan.co/)
+* [ZTM Open Source Community](https://github.com/zero-to-mastery/start-here-guidelines)
+* [ZTM Job Board](https://github.com/zero-to-mastery/ZtM-Job-Board)
 
 
 
