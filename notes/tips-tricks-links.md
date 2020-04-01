@@ -11,3 +11,4 @@ filetype:pdf
 * http://alvand.basu.ac.ir/~dezfoulian/files/DataStructures%20&%20Algorithms/
 * http://index-of.es/
 * https://www.cs.cmu.edu/~ab/15-123S09/lectures/
+* http://erewhon.superkuh.com/library/
