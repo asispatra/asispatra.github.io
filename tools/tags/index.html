@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YouTube Tags Extractor - Asis Patra</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <link
+      rel="stylesheet"
+      href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("button").click(function(){
+          var URL = $("input").val();
+          if (URL == "") {
+            alert("URL Empty!");
+            return;
+          }
+          if (URL.match(/(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/) == null) {
+            alert("NOT a YouTube URL!");
+            return;
+          }
+          $.ajax({
+            method: "GET",
+            url: "http://34.136.240.113/tags/extract.php",
+            data: { url: URL},
+            success: function(data) {
+              $("#tagsyt").text(data);
+              var lines = data.split(",");  
+              $("#tagslist").attr("rows",lines.length);
+              $("#tagslist").text(data.replaceAll(",", "\n"));
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <section class="section">
+      <div class="columns">
+        <div class="column is-one-fifth">
+        </div>
+        <div class="column is-three-fifths">
+          <div class="content">
+            <h1>YouTube Tags Extractor</h1>
+            <h6>YouTube URL:</h6>
+            <p>
+            <input class="input" type="text" placeholder="YouTube URL">
+            </p>
+            <p>
+            <button class="button">Extract Tags</button>
+            </p>
+            <h6>Tags in List:</h6>
+            <p>
+            <textarea id="tagslist" class="textarea"></textarea>
+            </p>
+            <h6>Tags for YouTube</h6>
+            <p>
+            <textarea id="tagsyt" class="textarea"></textarea>
+            </p>
+          </div>
+        </div>
+        <div class="column is-one-fifth">
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
