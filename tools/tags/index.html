@@ -27,6 +27,7 @@
             method: "GET",
             url: "http://34.136.240.113/tags/extract.php",
             crossDomain: true,
+            dataType: "text",
             data: { url: URL},
             success: function(data) {
               $("#tagsyt").text(data);
