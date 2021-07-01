@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>YouTube Tags Extractor - Asis Patra</title>
+    <title>YouTube Info Extractor - Asis Patra</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
 
     <link
@@ -34,16 +34,19 @@
           $("button").prop('disabled', true);
           $.ajax({
             method: "GET",
-            url: "https://asispatra.info/tools/tags/extract.php",
+            url: "https://asispatra.info/tools/ytinfo/extract.php",
             data: { url: URL},
             error: function(jqXHR, textStatus, errorThrown) {
               $("button").prop('disabled', false);
               alert(jqXHR.statusText);
-            },
+            }, 
             success: function(data) {
               $("button").prop('disabled', false);
               $("#info").removeClass("is-hidden");
-              data = JSON.parse(data);
+              data = JSON.parse(data); 
+              $("#title").val(data.title);
+              $("#description").text(data.description);
+              $("#description").attr("rows",data.description.split('\n').length);
               $("#tagsyt").text(data.tags.join(','));
               $("#tagslist").text(data.tags.join('\n'));
               $("#tagslist").attr("rows",data.tags.length);
@@ -83,15 +86,23 @@
         </div>
         <div class="column is-three-fifths">
           <div class="content">
-            <h1>YouTube Tags Extractor</h1>
+            <h1>YouTube Info Extractor</h1>
             <h6>YouTube URL:</h6>
             <p>
             <input class="input" type="text" placeholder="YouTube URL">
             </p>
             <p>
-            <button class="button is-info">Extract Tags</button>
+            <button class="button is-info">Extract Info</button>
             </p>
             <div class="is-hidden" id="info">
+            <h6>Title:</h6>
+            <p>
+            <input id="title" class="input" type="text">
+            </p>
+            <h6>Description:</h6>
+            <p>
+            <textarea id="description" class="textarea"></textarea>
+            </p>
             <h6>Tags for YouTube</h6>
             <p>
             <textarea id="tagsyt" class="textarea"></textarea>

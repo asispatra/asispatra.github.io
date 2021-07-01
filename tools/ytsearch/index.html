@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>YouTube Tags Extractor - Asis Patra</title>
+    <title>YouTube Tags Search - Asis Patra</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
 
     <link
@@ -22,20 +22,16 @@
           }
         });
         $("button").click(function(){
-          var URL = $("input").val();
-          if (URL == "") {
-            alert("URL Empty!");
-            return;
-          }
-          if (URL.match(/(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/) == null) {
-            alert("NOT a YouTube URL!");
+          var STR = $("input").val();
+          if (STR == "") {
+            alert("Search string is Empty!");
             return;
           }
           $("button").prop('disabled', true);
           $.ajax({
             method: "GET",
-            url: "https://asispatra.info/tools/tags/extract.php",
-            data: { url: URL},
+            url: "https://asispatra.info/tools/ytsearch/search.php",
+            data: { str: STR },
             error: function(jqXHR, textStatus, errorThrown) {
               $("button").prop('disabled', false);
               alert(jqXHR.statusText);
@@ -44,9 +40,17 @@
               $("button").prop('disabled', false);
               $("#info").removeClass("is-hidden");
               data = JSON.parse(data);
-              $("#tagsyt").text(data.tags.join(','));
-              $("#tagslist").text(data.tags.join('\n'));
-              $("#tagslist").attr("rows",data.tags.length);
+              arr1 = [];
+              arr2 = [];
+              data.forEach(function (item, index) {
+                arr1.push(item.data);
+                arr2.push(item.data + " ---> [" + ((item.value == null) ? "" : item.value.join(", ")) + "]");
+              });
+              $("#tagsyt").text(arr1.join(','));
+              $("#tagslist").text(arr1.join('\n'));
+              $("#tagslist").attr("rows", arr1.length);
+              $("#tagslistpriority").text(arr2.join('\n'));
+              $("#tagslistpriority").attr("rows", arr2.length);
             }
           });
         });
@@ -83,13 +87,13 @@
         </div>
         <div class="column is-three-fifths">
           <div class="content">
-            <h1>YouTube Tags Extractor</h1>
-            <h6>YouTube URL:</h6>
+            <h1>YouTube Tags Search</h1>
+            <h6>Search String:</h6>
             <p>
-            <input class="input" type="text" placeholder="YouTube URL">
+            <input class="input" type="text" placeholder="Search String">
             </p>
             <p>
-            <button class="button is-info">Extract Tags</button>
+            <button class="button is-info">Search Tags</button>
             </p>
             <div class="is-hidden" id="info">
             <h6>Tags for YouTube</h6>
@@ -99,6 +103,10 @@
             <h6>Tags in List:</h6>
             <p>
             <textarea id="tagslist" class="textarea"></textarea>
+            </p>
+            <h6>Tags in List with Priority:</h6>
+            <p>
+            <textarea id="tagslistpriority" class="textarea"></textarea>
             </p>
             </div>
           </div>
