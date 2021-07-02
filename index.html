@@ -36,9 +36,11 @@
       $("a.panel-block.is-active").removeClass("is-active");
       $(this).addClass("is-active");
       if (window.location.href.includes('url=')) {
-        history.replaceState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
+        //history.replaceState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
+        history.pushState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
       } else {
-        history.replaceState({}, '', window.location.href + "?url=" + $(this).attr("data"));
+        //history.replaceState({}, '', window.location.href + "?url=" + $(this).attr("data"));
+        history.pushState({}, '', window.location.href + "?url=" + $(this).attr("data"));
       }
     });
     
@@ -65,6 +67,18 @@
     
     if (window.location.href.includes('url=Contents/')) {
       $("a.panel-block[data='" + window.location.href.split("url=")[1] + "']").trigger("click");
+    }
+    
+    window.onpopstate = function(event) {
+      console.log(window.location.href);
+      if (window.location.href.includes('url=')) {
+        $(".content").text("");
+        $(".content").load(window.location.href.split("url=")[1]);
+        $("a.panel-block.is-active").removeClass("is-active");
+        $("a.panel-block[data='" + window.location.href.split("url=")[1] + "']").addClass("is-active");
+      } else {
+        location.reload();
+      }
     }
     
     //$("a.panel-block[tab='All']:first").trigger("click");
