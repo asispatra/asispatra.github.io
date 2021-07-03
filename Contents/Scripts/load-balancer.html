@@ -1,0 +1,52 @@
+<script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/Scripts/load-balancer.html';}</script>
+<h1>Create a Load Balancer</h1>
+<p>Here a Load Balancer is script which generates items in a ratio.</p>
+<p>For example, We want to generate traffic for location <code>IN</code>, <code>US</code> and <code>BD</code> in <code>1:7:2</code> ratio. So this script will ensure that it generates a location on each invokation, which maintain the ration.</p>
+<pre>
+$ for i in {1..10} ; do bash load_balancer.sh ; done 
+US
+US
+BD
+US
+US
+US
+BD
+IN
+US
+US
+</pre>
+<p>Here is the <code>bash</code> script <code>load_balancer.sh</code> looks like:</p>
+<pre>
+#!/bin/bash
+
+RATIO=&quot;1:7:2&quot;
+
+ITEMS=(
+IN
+US
+BD
+)
+
+TOTAL=$(echo $RATIO | tr &#39;:&#39; &#39;+&#39; | bc)
+if [ $(cat ITEM_LIST 2&gt; /dev/null | wc -l) -ne $TOTAL ] ; then
+  #echo &quot;Generating new ITEM_LIST&quot;
+  LIST=$(
+  INDEX=0
+  for i in $(echo &quot;$RATIO&quot; | tr &#39;:&#39; &#39; &#39;) ; do
+      seq $i | sed &quot;c ${ITEMS[$INDEX]}&quot;
+      INDEX=$((INDEX + 1))
+  done | shuf
+  )
+  echo &quot;$LIST&quot; &gt; ITEM_LIST
+  rm LAST_INDEX 2&gt;/dev/null
+fi
+
+LAST_INDEX=$(cat LAST_INDEX 2&gt; /dev/null || echo 0)
+CURRENT_INDEX=$((LAST_INDEX + 1))
+cat ITEM_LIST | sed -n ${CURRENT_INDEX}&#39;p&#39;
+echo $CURRENT_INDEX &gt; LAST_INDEX
+if [ $CURRENT_INDEX -eq $(cat ITEM_LIST | wc -l) ] ; then
+    rm ITEM_LIST
+fi
+</pre>
+<p>Note: For different purpose usage change the <code>RATIO</code> and <code>ITEMS</code> in script <code>load_balancer.sh</code>.</p>
