@@ -24,11 +24,43 @@
     .subject {
       white-space: nowrap; overflow-x: scroll; padding-top:10px; padding-bottom:10px;
     }
+    .clipboard-box {
+      padding: 4px; margin: 8px; border: 1px solid #ddd; box-shadow: none;
+    }
 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
+    
+    $(document).on("mouseenter", "pre", function (event) {
+        $(this).next().removeClass("is-hidden")
+        $(this).next().css("background-color", "#fcfcfc");
+    });
+    $(document).on("mouseleave", ".content div", function (event) {
+        $("pre").next().addClass("is-hidden")
+    });
+    
+    $(document).on("mouseenter", "pre ~ div", function (event) {
+        $(this).css("background-color", "#f5f5f5");
+    });
+    $(document).on("mouseleave", "pre ~ div", function (event) {
+        $(this).css("background-color", "#fcfcfc");
+    });
+    $(document).on("click", "pre ~ div", function (event) {
+        $(this).append('<textarea id="tempinput">');
+        $("#tempinput").val($(this).prev().text().trim());
+        $("#tempinput").select();
+        document.execCommand("copy");
+        $("#tempinput").remove();
+    
+        $(this).find(".fa-clipboard").addClass("is-hidden");
+        $(this).find(".fa-clipboard-check").removeClass("is-hidden");
+        setTimeout(function(){
+          $("pre ~ div").find(".fa-clipboard-check").addClass("is-hidden");
+          $("pre ~ div").find(".fa-clipboard").removeClass("is-hidden");
+        }, 2000);
+    });
     
     $("a.panel-block").click(function() {
       $(".content").text("");

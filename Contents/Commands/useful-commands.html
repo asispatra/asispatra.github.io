@@ -1,103 +1,103 @@
 <script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/Commands/useful-commands.html';}</script>
 <h1>Linux Useful Commands</h1>
 <h3>how to combine two variable column-by-column in bash</h3>
-<pre>
+<div style="position: relative;"><pre>
 paste &lt;(echo &quot;$VAR1&quot;) &lt;(echo &quot;$VAR2&quot;) --delimiters &#39; &#39;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Persistence Mode</h3>
-<pre>
+<div style="position: relative;"><pre>
 nvidia-smi -pm 0 # Disable
 nvidia-smi -pm 1 # Enable
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Convert column to row</h3>
-<pre>
+<div style="position: relative;"><pre>
 seq 6 | paste -sd&quot; &quot;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Text between pattern</h3>
-<pre>
+<div style="position: relative;"><pre>
 cat textfile | awk &#39;/PATTERN_START/{flag=1; next} /PATTERN_END/{flag=0} flag&#39;
 
 # Include the pattern matched too
 cat textfile | sed -n &#39;/PATTERN_START/,/PATTERN_END/p&#39;
 cat textfile | awk &#39;/PATTERN_START/,/PATTERN_END/&#39;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>List all installed kernel</h3>
 <h5>RedHat / CentOS / RHEL / Fedora Linux user</h5>
-<pre>
+<div style="position: relative;"><pre>
 rpm -qa kernel
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h5>Debian / Ubuntu Linux user</h5>
-<pre>
+<div style="position: relative;"><pre>
 dpkg --list | grep linux-image
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>How to Connect to Cisco AnyConnect VPN in Ubuntu</h3>
 <p>http://ubuntuhandbook.org/index.php/2014/11/connect-cisco-anyconnect-vpn-ubuntu/</p>
-<pre>
+<div style="position: relative;"><pre>
 # Install OpenConnect:
 sudo apt-get install openconnect
 
 # Connect to VPN, run:
 sudo openconnect yourvpn.example.com
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>CPU enable/disable</h3>
-<pre>
+<div style="position: relative;"><pre>
 # Enable
 for x in {2..4} ; do  echo 1 &gt; /sys/devices/system/cpu/cpu${x}/online ; done
 
 # Disable
 for x in {2..4} ; do  echo 0 &gt; /sys/devices/system/cpu/cpu${x}/online ; done
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>perf command</h3>
 <p>Use root or sudo to take cpu profile</p>
-<pre>
+<div style="position: relative;"><pre>
 # Start profile
 perf record -a &lt;command&gt;
 perf record -a -p &lt;pid&gt;
 
 # profile result
 perf report -i perf.data
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Create softlink</h3>
-<pre>
+<div style="position: relative;"><pre>
 # Create a softlink python of python3
 ln -s python3 python -f
 # -f option to force
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Send command in background in for loop</h3>
-<pre>
+<div style="position: relative;"><pre>
 for d in train/* ; do find $d -name &quot;*.jpg&quot; | xargs -I {} file {} &gt;&gt; train_info.txt &amp; done
 # Note: there is no &#39;;&#39; before done
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>find command</h3>
-<pre>
+<div style="position: relative;"><pre>
 find train -name &quot;*.jpg&quot; | xargs -I {} file {} &gt;&gt; train_info.txt
 for d in train/* ; do find $d -name &quot;*.jpg&quot; | xargs -I {} file {} &gt;&gt; train_info.txt &amp; done
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Calculate average</h3>
-<pre>
+<div style="position: relative;"><pre>
 lines=$(data_filter_to_a_single_column) ; avg=0; n=0; for l in $(echo &quot;$lines&quot;) ; do avg=$(echo &quot;scale=12; ($avg  * $n + $l)/($n + 1)&quot; | bc) ; n=$(expr $n + 1) ; done; echo $avg
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Install JDK 8 on Ubuntu</h3>
 <h5>Ubuntu Trusty (14.04 LTS).</h5>
 <p>OpenJDK 8 is not available on Trusty. To install Oracle JDK 8:</p>
-<pre>
+<div style="position: relative;"><pre>
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h5>Ubuntu Wily (15.10) and above.</h5>
 <p>To install OpenJDK 8:</p>
-<pre>
+<div style="position: relative;"><pre>
 sudo apt-get install openjdk-8-jdk
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Replace matched pattern of a file</h3>
-<pre>
+<div style="position: relative;"><pre>
 sed -i &#39;:a;N;$!ba;s/Hello\/World\/hello.c:11[^\n]*\n//g&#39; logfile    # This remove new line too
 sed -i &#39;s,text,&#39;$text&#39;,g&#39; file
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>git commands</h3>
-<pre>
+<div style="position: relative;"><pre>
 # git clone a particular branch
 git clone -b branch-name https://github.com/abc/xyz.git
 
@@ -116,19 +116,19 @@ git apply file.patch
 git remote add ibmsoe https://github.com/abc/xyz
 git fetch pqr
 git cherry-pick b46130b922d47ff20ac40ebbdef01f7771e1d0bc
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Extract a pattern from a text</h3>
-<pre>
+<div style="position: relative;"><pre>
 matched_text=$(echo $single_line_text | sed &#39;s/.*xyz=\([^ ][^ ]*\).*/\1/&#39;)
 
 # Note: Need to change the pattern accordingly
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Timestamp</h3>
-<pre>
+<div style="position: relative;"><pre>
 ext=$(date +%d%b%Y_%H%M%S)
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>A command success or not</h3>
-<pre>
+<div style="position: relative;"><pre>
 if echo $line | grep &quot;xyz&quot; &gt; /dev/null ; then
     echo &quot;xyz present&quot;
 elif echo $line | grep &quot;XYZ&quot; &gt; /dev/null ; then
@@ -136,15 +136,15 @@ elif echo $line | grep &quot;XYZ&quot; &gt; /dev/null ; then
 else
     echo &quot;not present&quot;
 fi
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Array or dictonary in bash</h3>
-<pre>
+<div style="position: relative;"><pre>
 declare -A arr
 arr[$key]=$val
 val=${arr[$key]}
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>tar commands</h3>
-<pre>
+<div style="position: relative;"><pre>
 tar -cvf filename.tar directory         # Create a .tar file
 tar -cvzf filename.tar.gz directory     # Create a .tar.gz file
 tar -cvjSf filename.tar.bz2 directory    # Create a .tar.bz2 file
@@ -155,57 +155,57 @@ tar -xvjf filename.tar.bz2              # Uncompress a .tar.bz2 file
 tar -xf filename.tar.xz                 # Uncompress a .tar.xz file
 
 # Note: Use -C option to extract files to a specific directory
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Redirect output(stdout and stderr) to a file</h3>
-<pre>
+<div style="position: relative;"><pre>
 $ command &gt;&gt; filename 2&gt;&amp;1
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>How to find all files containing specific text on Linux?</h3>
-<pre>
+<div style="position: relative;"><pre>
 grep -rnw &#39;/path/to/somewhere/&#39; -e &quot;pattern&quot;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <p>http://stackoverflow.com/questions/16956810/how-to-find-all-files-containing-specific-text-on-linux#answer-16957078</p>
 <h3>How To Create a Sudo User on Ubuntu</h3>
 <p>If you are not root user use sudo for the following commands.</p>
 <p>A. Use the adduser command to add a new user to your system.</p>
-<pre>
+<div style="position: relative;"><pre>
 # adduser &lt;username&gt;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <p>B. Use the usermod command to add the user to the sudo group.</p>
-<pre>
+<div style="position: relative;"><pre>
 # usermod -aG sudo &lt;username&gt;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <p>— OR —</p>
 <p>B. Grant Root Privileges to the User</p>
-<pre>
+<div style="position: relative;"><pre>
 # visudo
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <p>Find the following code:</p>
 <p># User privilege specification</p>
-<pre>
+<div style="position: relative;"><pre>
 root ALL=(ALL:ALL) ALL
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <p>In this case, we’re granting root privileges to the user username. Add the following below that code:</p>
-<pre>
+<div style="position: relative;"><pre>
 username ALL=(ALL:ALL) ALL
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <p>Then exit and save the file with the key commands Ctrl-x, Y, enter.</p>
 <h3>Update a single package in Ubuntu</h3>
-<pre>
+<div style="position: relative;"><pre>
 sudo apt-get --only-upgrade install &lt;packagename&gt;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Extract Debian Packages</h3>
-<pre>
+<div style="position: relative;"><pre>
 sudo dpkg -x package.deb /tmp/out
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Execute script in a remote system</h3>
-<pre>
+<div style="position: relative;"><pre>
 sshpass -p $PASS ssh -o StrictHostKeyChecking=no $USER@$HOST &quot;mkdir -p ~/tmp_$dir&quot;
 sshpass -p $PASS scp -r $dir/* $USER@$HOST:~/tmp_$dir
 sshpass -p $PASS ssh -f $USER@$HOST &quot;cd ~/tmp_$dir ; screen -dm -S label_$(date +%d%b%Y_%H%M%S) ./startBatch.sh&quot;
 # sshpass -p $PASS ssh -f $USER@$HOST &quot;cd ~/tmp_$dir ; nohup ./startBatch.sh &amp;&quot;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
 <h3>Recursive find/replace of a string</h3>
-<pre>
+<div style="position: relative;"><pre>
 find &lt;DIR&gt; -type f -print0 | xargs -0 sed -i &#39;s/TEXT1/TEXT2/g&#39;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>

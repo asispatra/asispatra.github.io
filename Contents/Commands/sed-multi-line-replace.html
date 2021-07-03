@@ -1,9 +1,9 @@
 <script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/Commands/sed-multi-line-replace.html';}</script>
 <h1>sed: Replace multi-line string</h1>
 <p>If there is <code>\n</code> in the pattern, sed does not match the pattern. As a solution we can replace <code>\n</code> with <code>\r</code> or <code>\f</code> before we use <code>sed</code> and later we can revert it back.</p>
-<pre>
+<div style="position: relative;"><pre>
 cat FILENAME | tr &#39;\n&#39; &#39;\f&#39; | sed &#39;s/PATTERN1/PATTERN2/g&#39; | tr &#39;\f&#39; &#39;\n&#39;
 cat FILENAME | tr &#39;\n&#39; &#39;\r&#39; | sed &#39;s/PATTERN1/PATTERN2/g&#39; | tr &#39;\r&#39; &#39;\n&#39;
 
 # Where PATTERN1 and PATTERN2 can contain &#39;\n&#39;
-</pre>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
