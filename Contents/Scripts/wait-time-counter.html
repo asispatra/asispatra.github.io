@@ -1,0 +1,18 @@
+<script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/Scripts/wait-time-counter.html';}</script>
+<h1>Wait Time Counter</h1>
+<p><code>sleep</code> command helps us to put delay between two statements in shell script. Sometimes we want to find how much remaining time is there from the sleep time while the time is longer.</p>
+<p>Here is a script named <code>wait-time-counter.sh</code> which helps in this kind of scenario.</p>
+<div style="position: relative;"><pre>
+#!/bin/bash
+
+SLEEP_TIME=$(cat SLEEP_TIME 2&gt;/dev/null || echo 10)
+echo &quot;### SLEEP_TIME: ${SLEEP_TIME} Second(s)&quot;
+echo &quot;### Remaining Time: ${SLEEP_TIME} Second(s)&quot;
+i=0
+while [ $i -lt ${SLEEP_TIME} ] ; do
+  sleep 1
+  i=$(expr $i + 1)
+  echo -e $&#39;\e[1F\e[2K### Remaining Time: &#39;$(expr ${SLEEP_TIME} - $i)&#39; Second(s)&#39;
+done
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>Note: You can put <code>SLEEP_TIME</code> in file or can adjust in the script.</p>
