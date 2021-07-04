@@ -1,4 +1,4 @@
-<script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/Scripts/load-balancer.html';}</script>
+<script>if (window.location.href.includes('/Contents/')) {window.location = 'http://192.168.0.10/blog/?url=Contents/Scripts/load-balancer.html';}</script>
 <h1>Create a Load Balancer</h1>
 <p>Here a Load Balancer is script which generates items in a ratio.</p>
 <p>For example, We want to generate traffic for location <code>IN</code>, <code>US</code> and <code>BD</code> in <code>1:7:2</code> ratio. So this script will ensure that it generates a location on each invokation, which maintain the ration.</p>
@@ -14,7 +14,7 @@ BD
 IN
 US
 US
-</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
 <p>Here is the <code>bash</code> script <code>load_balancer.sh</code> looks like:</p>
 <div style="position: relative;"><pre>
 #!/bin/bash
@@ -48,5 +48,5 @@ echo $CURRENT_INDEX &gt; LAST_INDEX
 if [ $CURRENT_INDEX -eq $(cat ITEM_LIST | wc -l) ] ; then
     rm ITEM_LIST
 fi
-</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i></span></div></div>
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
 <p>Note: For different purpose usage change the <code>RATIO</code> and <code>ITEMS</code> in script <code>load_balancer.sh</code>.</p>

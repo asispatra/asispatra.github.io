@@ -55,10 +55,14 @@
         $("#tempinput").remove();
     
         $(this).find(".fa-clipboard").addClass("is-hidden");
-        $(this).find(".fa-clipboard-check").removeClass("is-hidden");
+        //$(this).find(".fa-clipboard-check").removeClass("is-hidden");
+        $(this).find(".fa-check").removeClass("is-hidden");
+        $(this).css("border", ".1em solid rgba(52,208,88,.4)");
         setTimeout(function(){
-          $("pre ~ div").find(".fa-clipboard-check").addClass("is-hidden");
+          //$("pre ~ div").find(".fa-clipboard-check").addClass("is-hidden");
+          $("pre ~ div").find(".fa-check").addClass("is-hidden");
           $("pre ~ div").find(".fa-clipboard").removeClass("is-hidden");
+          $("pre ~ div").css("border", "1px solid #ddd");
         }, 2000);
     });
     
@@ -97,8 +101,28 @@
       }
     });
     
+    $("#tools").removeAttr("href");
+    
+    $("#tools").click(function() {
+      $(".content").text("");
+      $(".content").load("tools/index.html");
+      if (window.location.href.includes('url=')) {
+        //history.replaceState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
+        history.pushState({}, '', window.location.href.split("url=")[0] + "url=" + "tools/index.html");
+      } else {
+        //history.replaceState({}, '', window.location.href + "?url=" + $(this).attr("data"));
+        history.pushState({}, '', window.location.href + "?url=" + "tools/index.html");
+      }
+    });
+    
     if (window.location.href.includes('url=Contents/')) {
       $("a.panel-block[data='" + window.location.href.split("url=")[1] + "']").trigger("click");
+    } else if (window.location.href.includes('url=tools/')) {
+      $(".content").text("");
+      $(".content").load(window.location.href.split("url=")[1]);
+    } else {
+      $(".content").text("");
+      $(".content").load("content.html");
     }
     
     window.onpopstate = function(event) {
@@ -124,16 +148,16 @@
       <div class="container">
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item" href="https://asispatra.github.io/">Home</a>
-            <a class="navbar-item" href="https://asispatra.github.io/tools/tags/index.html">YouTube Tags Extractor</a>
-            <a class="navbar-item" href="https://asispatra.github.io/tools/ytsearch/index.html">YouTube Tags Search</a>
-            <a class="navbar-item" href="https://asispatra.github.io/tools/ytinfo/index.html">YouTube Info Extractor</a>
+            <a class="navbar-item" href="http://192.168.0.10/blog/">Home</a>
+            <a class="navbar-item" href="http://192.168.0.10/blog/tools/tags/index.html">YouTube Tags Extractor</a>
+            <a class="navbar-item" href="http://192.168.0.10/blog/tools/ytsearch/index.html">YouTube Tags Search</a>
+            <a class="navbar-item" href="http://192.168.0.10/blog/tools/ytinfo/index.html">YouTube Info Extractor</a>
           </div>
     
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-link">Tools</a>
+                <a class="button is-link" href="http://192.168.0.10/blog/tools/index.html" id="tools">Tools</a>
                 <a class="button is-primary" href="https://github.com/asispatra/">Github</a>
               </div>
             </div>
@@ -171,24 +195,7 @@
         </div>
         <div class="column is-three-fifths">
 <div class="content" style="margin-top:24px;">
-<div class="card">
-  <div class="card-content">
-    <p class="title">
-      “Technologies come and technologies go, but insight is forever.”
-    </p>
-    <p class="subtitle">
-      ~ Michael Nielsen
-    </p>
-  </div>
-  <footer class="card-footer">
-    <p class="card-footer-item">
-      <span>
-        About <a href="https://michaelnielsen.org">Michael Nielsen</a>
-      </span>
-    </p>
-  </footer>
-</div>
-
+<!--__CONTENT__-->
 </div>
         </div>
         <div class="column is-one-fifth">
