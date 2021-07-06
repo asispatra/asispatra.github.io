@@ -1,0 +1,31 @@
+<script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/Scripts/csv2table.html';}</script>
+<h1>Print csv in tabular form: csv2table</h1>
+<p>There is a command named <code>column</code> which already helps you to print csv in tabular form. Here, we have used the same <code>column</code> command in <a href="https://asispatra.github.io/Contents/Scripts/csv2table.sh"><code>csv2table.sh</code></a> script which automatically take care of the header and prints in tabular form with border.</p>
+<h3>Examples</h3>
+<div style="position: relative;"><pre>
+$ column -V
+column from util-linux 2.32.1
+
+$ cat csv.data
+Instance,JTHREADS,JDURATION,Throughputs,Avg. Resp. Time,Min. Resp. Time,Max. Resp. Time,Error
+1,20,1800,1984.6,9,0,131,0 (0.00%)
+2,20,1800,1933.6,9,0,125,0 (0.00%)
+3,20,1800,1976.7,9,0,159,0 (0.00%)
+4,20,1800,1897.2,10,0,130,0 (0.00%)
+
+$ bash csv2table.sh csv.data
+---------+----------+-----------+-------------+-----------------+-----------------+-----------------+-----------------
+Instance | JTHREADS | JDURATION | Throughputs | Avg. Resp. Time | Min. Resp. Time | Max. Resp. Time |            Error
+---------+----------+-----------+-------------+-----------------+-----------------+-----------------+-----------------
+       1 |       20 |      1800 |      1984.6 |               9 |               0 |             131 |        0 (0.00%)
+       2 |       20 |      1800 |      1933.6 |               9 |               0 |             125 |        0 (0.00%)
+       3 |       20 |      1800 |      1976.7 |               9 |               0 |             159 |        0 (0.00%)
+       4 |       20 |      1800 |      1897.2 |              10 |               0 |             130 |        0 (0.00%)
+---------+----------+-----------+-------------+-----------------+-----------------+-----------------+-----------------
+
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>Note: Please make sure you are using latest <code>column</code> version.</p>
+<h5>Download Script</h5>
+<div style="position: relative;"><pre>
+curl &quot;https://asispatra.github.io/Contents/Scripts/csv2table.sh&quot; -o &quot;csv2table.sh&quot;
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>

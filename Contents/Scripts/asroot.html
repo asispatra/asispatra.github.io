@@ -1,0 +1,21 @@
+<script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/Scripts/asroot.html';}</script>
+<h1>Run commands as root user</h1>
+<p>This is a small script named <a href="https://asispatra.github.io/Contents/Scripts/asroot"><code>asroot</code></a> to run commands as <code>root</code> user.</p>
+<h3>Examples</h3>
+<div style="position: relative;"><pre>
+./asroot COMMAND
+./asroot &quot;COMMAND&quot;
+./asroot &quot;COMMAND ; COMMAND&quot;
+
+./asroot cp SRC DEST
+./asroot &quot;cp SRC DEST&quot;
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>Note: Please make sure that <code>root</code> password is saved in <code>PASS</code> file in the same directory as <a href="https://asispatra.github.io/Contents/Scripts/asroot"><code>asroot</code></a> script.</p>
+<div style="position: relative;"><pre>
+echo ROOT_PASSWORD &gt; PASS
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h5>Download Script</h5>
+<div style="position: relative;"><pre>
+curl &quot;https://asispatra.github.io/Contents/Scripts/asroot&quot; -o &quot;asroot&quot;
+chmod u+x asroot
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
