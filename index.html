@@ -68,7 +68,9 @@
     
     $("a.panel-block").click(function() {
       $(".content").text("");
-      $(".content").load($(this).attr("data"));
+      $(".content").load($(this).attr("data"), function(responseTxt, statusTxt, xhr){
+        $(document).attr("title", $(".content h1").text() + " - Asis Patra");
+      });
       $("a.panel-block.is-active").removeClass("is-active");
       $(this).addClass("is-active");
       if (window.location.href.includes('url=')) {
@@ -105,7 +107,9 @@
     
     $("#tools").click(function() {
       $(".content").text("");
-      $(".content").load("tools/index.html");
+      $(".content").load("tools/index.html", function(responseTxt, statusTxt, xhr){
+        $(document).attr("title", $(".content h1").text() + " - Asis Patra");
+      });
       if (window.location.href.includes('url=')) {
         //history.replaceState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
         history.pushState({}, '', window.location.href.split("url=")[0] + "url=" + "tools/index.html");
@@ -116,10 +120,12 @@
     });
     
     if (window.location.href.includes('url=Contents/')) {
-      $("a.panel-block[data='" + window.location.href.split("url=")[1] + "']").trigger("click");
+      $("a.panel-block[data='" + window.location.href.split("url=")[1] + "'][tab='" + $(".panel-tabs > a.is-active").text() + "']").trigger("click");
     } else if (window.location.href.includes('url=tools/')) {
       $(".content").text("");
-      $(".content").load(window.location.href.split("url=")[1]);
+      $(".content").load(window.location.href.split("url=")[1], function(responseTxt, statusTxt, xhr){
+        $(document).attr("title", $(".content h1").text() + " - Asis Patra");
+      });
     } else {
       $(".content").text("");
       $(".content").load("content.html");
@@ -129,7 +135,9 @@
       console.log(window.location.href);
       if (window.location.href.includes('url=')) {
         $(".content").text("");
-        $(".content").load(window.location.href.split("url=")[1]);
+        $(".content").load(window.location.href.split("url=")[1], function(responseTxt, statusTxt, xhr){
+          $(document).attr("title", $(".content h1").text() + " - Asis Patra");
+        });
         $("a.panel-block.is-active").removeClass("is-active");
         $("a.panel-block[data='" + window.location.href.split("url=")[1] + "']").addClass("is-active");
       } else {
@@ -142,6 +150,7 @@
     });
 
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E39TBGKLH1"></script>
   </head>
   <body>
         <nav class="navbar is-fixed-top is-dark">
@@ -158,7 +167,7 @@
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-link" href="https://asispatra.github.io/?url=tools/index.html" id="tools">Tools</a>
-                <a class="button is-primary" href="https://github.com/asispatra/">Github</a>
+                <a class="button is-primary" href="__GITHUB__">Github</a>
               </div>
             </div>
           </div>
