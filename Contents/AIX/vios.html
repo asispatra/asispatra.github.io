@@ -1,10 +1,34 @@
 <script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/AIX/vios.html';}</script>
 <h1>VIOS Useful Commands</h1>
+<h3>Virtual I/O Server commands</h3>
+<p><a href="https://www.ibm.com/docs/en/power9?topic=information-virtual-io-server-commands">https://www.ibm.com/docs/en/power9?topic=information-virtual-io-server-commands</a> <a href="https://www.ibm.com/docs/en/power10?topic=information-virtual-io-server-commands">https://www.ibm.com/docs/en/power10?topic=information-virtual-io-server-commands</a></p>
 <h3>oem_setup_env Command</h3>
 <p>Initiates the OEM installation and set up environment.</p>
 <div style="position: relative;"><pre>
 oem_setup_env
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>Resetting Network in VIOS (Virtual I/O Server)</h3>
+<p>Delete all existing network devices and from the VIOS command line interface:</p>
+<div style="position: relative;"><pre>
+lsdev | grep -i &quot;Shared Ethernet&quot;
+rmtcpip -all
+rmdev -dev enX (where X is the number of the Shared Ethernet adapter(s)
+rmdev -dev etX
+rmdev -dev entX
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>Re-create the LHEA and virtual adapters by either:</p>
+<div style="position: relative;"><pre>
+cfgdev
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>View newly created LHEAs <code>lsdev | grep ^e`</code> Re-create your SEA</p>
+<div style="position: relative;"><pre>
+mkvdev -sea ent0 -vadapter ent2,ent3,ent4,ent5 -default ent2 -defaultid 1 (where ent0 is the Logical Host Ethernet Port and ent2 to ent5 are the Virtual I/O Ethernet Adapters)
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>Re-create your network interface with ‘mktcpip’ (or use configassist to get smitty screens):</p>
+<div style="position: relative;"><pre>
+mktcpip -hostname intvios1 -inetaddr 9.5.30.50 -interface en6 -gateway 9.5.30.1 -nsrvaddr 9.10.244.200 -nsrvdomain rchland.ibm.com -netmask 255.255.255.0 -start
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>Reference: <a href="https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server">https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server</a></p>
 <h3>Disk Assignment</h3>
 <div style="position: relative;"><pre>
 To assign hard disk :
