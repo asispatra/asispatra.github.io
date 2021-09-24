@@ -127,8 +127,8 @@
         $(document).attr("title", $(".content h1").text() + " - Asis Patra");
       });
     } else {
-      $(".content").text("");
-      $(".content").load("content.html");
+      $(".content:first").text("");
+      $(".content:first").load("content.html");
     }
     
     window.onpopstate = function(event) {
@@ -268,4 +268,3 @@
     </section>
   </body>
 </html>
-
