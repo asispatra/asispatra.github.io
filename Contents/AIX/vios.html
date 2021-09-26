@@ -20,22 +20,29 @@ rmdev -dev entX
 <div style="position: relative;"><pre>
 cfgdev
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<p>View newly created LHEAs `` lsdev | grep ^e</p>
+<p>View newly created LHEAs</p>
 <div style="position: relative;"><pre>
-Re-create your SEA
+lsdev | grep ^e
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<p>mkvdev -sea ent0 -vadapter ent2,ent3,ent4,ent5 -default ent2 -defaultid 1 (where ent0 is the Logical Host Ethernet Port and ent2 to ent5 are the Virtual I/O Ethernet Adapters)</p>
+<p>Re-create your SEA</p>
 <div style="position: relative;"><pre>
-Re-create your network interface with &#39;mktcpip&#39; (or use configassist to get smitty screens):
+mkvdev -sea ent0 -vadapter ent2,ent3,ent4,ent5 -default ent2 -defaultid 1 (where ent0 is the Logical Host Ethernet Port and ent2 to ent5 are the Virtual I/O Ethernet Adapters)
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<p>mktcpip -hostname intvios1 -inetaddr 9.5.30.50 -interface en6 -gateway 9.5.30.1 -nsrvaddr 9.10.244.200 -nsrvdomain rchland.ibm.com -netmask 255.255.255.0 -start</p>
+<p>Re-create your network interface with ‘mktcpip’ (or use configassist to get smitty screens):</p>
 <div style="position: relative;"><pre>
-
-Reference: [https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server](https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server)
-
-### Disk Assignment
+mktcpip -hostname intvios1 -inetaddr 9.5.30.50 -interface en6 -gateway 9.5.30.1 -nsrvaddr 9.10.244.200 -nsrvdomain rchland.ibm.com -netmask 255.255.255.0 -start
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<p>To assign hard disk : lsdev | grep hdisk lspv -size lsmap -all mkvg -f -vg rootvg_RHELlpar hdisk1 mklv -lv RHELlpar_client rootvg_RHELlpar 745G mkvdev -vdev RHELlpar_client -vadapter vhost0 ```</p>
+<p>Reference: <a href="https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server">https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server</a></p>
+<h3>Disk Assignment</h3>
+<div style="position: relative;"><pre>
+To assign hard disk :
+lsdev | grep hdisk
+lspv -size
+lsmap -all
+mkvg -f -vg rootvg_RHELlpar hdisk1
+mklv -lv RHELlpar_client rootvg_RHELlpar 745G
+mkvdev -vdev RHELlpar_client -vadapter vhost0
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
 <h3>AIX Logical Volume Manager (LVM)</h3>
 <p><a href="http://www.datadisk.co.uk/html_docs/hp/aix_lvm.htm">http://www.datadisk.co.uk/html_docs/hp/aix_lvm.htm</a></p>
 <script>
