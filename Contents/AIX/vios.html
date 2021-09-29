@@ -7,6 +7,36 @@
 <div style="position: relative;"><pre>
 oem_setup_env
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>Delete defined interfaces</h3>
+<div style="position: relative;"><pre>
+oem_setup_env
+
+lsdev -Cc disk -S D -F name | xargs -l rmdev -dl
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>Solve: Duplicate PVID shows up on more than one disk</h3>
+<div style="position: relative;"><pre>
+oem_setup_env
+
+chdev -a pv=yes -l hdiskX
+chdev -a pv=clear -l hdiskX
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>Rename Logical Volume</h3>
+<div style="position: relative;"><pre>
+chlv -lv &lt;&lt;NEW_LV_NAME&gt;&gt; &lt;&lt;OLD_LV_NAME&gt;&gt;
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>Rename Volume Group</h3>
+<div style="position: relative;"><pre>
+varyoffvg &lt;&lt;vgname&gt;&gt;
+exportvg &lt;&lt;vgname&gt;&gt;
+
+recreatevg -y &lt;&lt;NEW_vgname&gt;&gt; hdiskX
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>PV (Physical Volume)</h3>
+<p>Reference: <a href="http://aix4admins.blogspot.com/2011/05/pv-physical-volume-when-disk-drive-is.html">http://aix4admins.blogspot.com/2011/05/pv-physical-volume-when-disk-drive-is.html</a></p>
+<h3>Copy Disk</h3>
+<div style="position: relative;"><pre>
+dd if=/dev/hdiskX of=/dev/hdiskY bs=1M
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
 <h3>Resetting Network in VIOS (Virtual I/O Server)</h3>
 <p>Delete all existing network devices and from the VIOS command line interface:</p>
 <div style="position: relative;"><pre>

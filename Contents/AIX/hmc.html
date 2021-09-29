@@ -8,6 +8,19 @@ chhwres -r proc -m &lt;&lt;SYSTEM_NAME&gt;&gt; -o r --id &lt;&lt;Partition_ID&gt
 <div style="position: relative;"><pre>
 rmvterm -m &lt;&lt;SYSTEM_NAME&gt;&gt; -p &lt;&lt;Partition_Name&gt;&gt;
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>Shows affinity score of managed system</h3>
+<div style="position: relative;"><pre>
+lsmemopt -m &lt;&lt;SYSTEM_NAME&gt;&gt; -o currscore
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<h3>Starts optimization for all LPARs on the entire system</h3>
+<div style="position: relative;"><pre>
+optmem -m &lt;&lt;SYSTEM_NAME&gt;&gt; -t affinity -o start
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
+<p>Reference: <a href="http://aix4admins.blogspot.com/2015/01/dpo-magaed-systems-can-become.html">http://aix4admins.blogspot.com/2015/01/dpo-magaed-systems-can-become.html</a></p>
+<h3>Shows progress status as percentage completed (progress=2 means 2%)</h3>
+<div style="position: relative;"><pre>
+lsmemopt -m &lt;&lt;SYSTEM_NAME&gt;&gt;
+</pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
 <script>
   gtag('config', 'G-E39TBGKLH1, {'page_path': 'Contents/AIX/hmc.html'});
 </script>
