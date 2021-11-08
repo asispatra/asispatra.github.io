@@ -31,8 +31,9 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-    
+        var jumpto="";
+    var LASTLOAD="";
+    $(document).ready(function(){
     $(document).on("mouseenter", "pre", function (event) {
         $(this).next().removeClass("is-hidden")
         $(this).next().css("background-color", "#fcfcfc");
@@ -47,6 +48,7 @@
     $(document).on("mouseleave", "pre ~ div", function (event) {
         $(this).css("background-color", "#fcfcfc");
     });
+    
     $(document).on("click", "pre ~ div", function (event) {
         $(this).append('<textarea id="tempinput">');
         $("#tempinput").val($(this).prev().text().trim());
@@ -66,20 +68,29 @@
         }, 2000);
     });
     
+    
     $("a.panel-block").click(function() {
       $(".content").text("");
-      $(".content").load($(this).attr("data"), function(responseTxt, statusTxt, xhr){
+      let URL=$(this).attr("data");
+      $(".content").load(URL, function(responseTxt, statusTxt, xhr){
         $(document).attr("title", $(".content h1").text() + " - Asis Patra");
+    
+      console.log('CALLED')
+      if (window.location.href.includes('url=')) {
+        history.pushState({}, '', window.location.href.split("url=")[0] + "url=" + URL+jumpto);
+      } else {
+        history.pushState({}, '', window.location.href + "?url=" + URL+jumpto);
+      }
+      if (jumpto.includes("#")) {
+          $('html, body').animate({
+            scrollTop: $(jumpto).offset().top - $(".navbar").height() - 24
+    
+          }, 2000);
+          jumpto="";
+      }
       });
       $("a.panel-block.is-active").removeClass("is-active");
       $(this).addClass("is-active");
-      if (window.location.href.includes('url=')) {
-        //history.replaceState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
-        history.pushState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
-      } else {
-        //history.replaceState({}, '', window.location.href + "?url=" + $(this).attr("data"));
-        history.pushState({}, '', window.location.href + "?url=" + $(this).attr("data"));
-      }
     });
     
     $(".panel-tabs > a").click(function() {
@@ -111,16 +122,20 @@
         $(document).attr("title", $(".content h1").text() + " - Asis Patra");
       });
       if (window.location.href.includes('url=')) {
-        //history.replaceState({}, '', window.location.href.split("url=")[0] + "url=" + $(this).attr("data"));
         history.pushState({}, '', window.location.href.split("url=")[0] + "url=" + "tools/index.html");
       } else {
-        //history.replaceState({}, '', window.location.href + "?url=" + $(this).attr("data"));
         history.pushState({}, '', window.location.href + "?url=" + "tools/index.html");
       }
     });
     
     if (window.location.href.includes('url=Contents/')) {
-      $("a.panel-block[data='" + window.location.href.split("url=")[1] + "'][tab='" + $(".panel-tabs > a.is-active").text() + "']").trigger("click");
+      //$("a.panel-block[data='" + window.location.href.split("url=")[1] + "'][tab='" + $(".panel-tabs > a.is-active").text() + "']").trigger("click");
+      if (window.location.href.split("url=")[1].includes("#")) {
+        jumpto=window.location.href.split("url=")[1].split("#")[1];
+        jumpto="#"+jumpto;
+        console.log(jumpto);
+      }
+      $("a.panel-block[data='" + window.location.href.split("url=")[1].split("#")[0] + "'][tab='" + $(".panel-tabs > a.is-active").text() + "']").trigger("click");
     } else if (window.location.href.includes('url=tools/')) {
       $(".content").text("");
       $(".content").load(window.location.href.split("url=")[1], function(responseTxt, statusTxt, xhr){
@@ -134,12 +149,35 @@
     window.onpopstate = function(event) {
       console.log(window.location.href);
       if (window.location.href.includes('url=')) {
+        if (! window.location.href.includes(LASTLOAD)) {
+        LASTLOAD=window.location.href.split("url=")[1];
         $(".content").text("");
         $(".content").load(window.location.href.split("url=")[1], function(responseTxt, statusTxt, xhr){
           $(document).attr("title", $(".content h1").text() + " - Asis Patra");
+          if (window.location.href.includes("#")) {
+            jumpto=window.location.href.split("#")[1];
+            jumpto="#"+jumpto;
+            
+            $('html, body').animate({
+              scrollTop: $(jumpto).offset().top - $(".navbar").height() - 24
+            }, 2000);
+            jumpto="";
+          }
         });
         $("a.panel-block.is-active").removeClass("is-active");
         $("a.panel-block[data='" + window.location.href.split("url=")[1] + "']").addClass("is-active");
+        } else {
+          if (window.location.href.includes("#")) {
+            jumpto=window.location.href.split("#")[1];
+            jumpto="#"+jumpto;
+    
+            $('html, body').animate({
+              scrollTop: $(jumpto).offset().top - $(".navbar").height() - 24
+            }, 100);
+            jumpto="";
+          }
+        
+        }
       } else {
         location.reload();
       }

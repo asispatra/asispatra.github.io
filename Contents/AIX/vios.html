@@ -1,43 +1,43 @@
 <script>if (window.location.href.includes('/Contents/')) {window.location = 'https://asispatra.github.io/?url=Contents/AIX/vios.html';}</script>
 <h1>VIOS Useful Commands</h1>
-<h3>Virtual I/O Server commands</h3>
+<div><a id="Virtual-I/O-Server-commands" href="#Virtual-I/O-Server-commands"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Virtual I/O Server commands</h3></div>
 <p><a href="https://www.ibm.com/docs/en/power9?topic=information-virtual-io-server-commands">https://www.ibm.com/docs/en/power9?topic=information-virtual-io-server-commands</a> <a href="https://www.ibm.com/docs/en/power10?topic=information-virtual-io-server-commands">https://www.ibm.com/docs/en/power10?topic=information-virtual-io-server-commands</a></p>
-<h3>oem_setup_env Command</h3>
+<div><a id="oem_setup_env-Command" href="#oem_setup_env-Command"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">oem_setup_env Command</h3></div>
 <p>Initiates the OEM installation and set up environment.</p>
 <div style="position: relative;"><pre>
 oem_setup_env
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<h3>Delete defined interfaces</h3>
+<div><a id="Delete-defined-interfaces" href="#Delete-defined-interfaces"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Delete defined interfaces</h3></div>
 <div style="position: relative;"><pre>
 oem_setup_env
 
 lsdev -Cc disk -S D -F name | xargs -l rmdev -dl
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<h3>Solve: Duplicate PVID shows up on more than one disk</h3>
+<div><a id="Solve:-Duplicate-PVID-shows-up-on-more-than-one-disk" href="#Solve:-Duplicate-PVID-shows-up-on-more-than-one-disk"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Solve: Duplicate PVID shows up on more than one disk</h3></div>
 <div style="position: relative;"><pre>
 oem_setup_env
 
 chdev -a pv=yes -l hdiskX
 chdev -a pv=clear -l hdiskX
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<h3>Rename Logical Volume</h3>
+<div><a id="Rename-Logical-Volume" href="#Rename-Logical-Volume"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Rename Logical Volume</h3></div>
 <div style="position: relative;"><pre>
 chlv -lv &lt;&lt;NEW_LV_NAME&gt;&gt; &lt;&lt;OLD_LV_NAME&gt;&gt;
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<h3>Rename Volume Group</h3>
+<div><a id="Rename-Volume-Group" href="#Rename-Volume-Group"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Rename Volume Group</h3></div>
 <div style="position: relative;"><pre>
 varyoffvg &lt;&lt;vgname&gt;&gt;
 exportvg &lt;&lt;vgname&gt;&gt;
 
 recreatevg -y &lt;&lt;NEW_vgname&gt;&gt; hdiskX
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<h3>PV (Physical Volume)</h3>
+<div><a id="PV-(Physical-Volume)" href="#PV-(Physical-Volume)"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">PV (Physical Volume)</h3></div>
 <p>Reference: <a href="http://aix4admins.blogspot.com/2011/05/pv-physical-volume-when-disk-drive-is.html">http://aix4admins.blogspot.com/2011/05/pv-physical-volume-when-disk-drive-is.html</a></p>
-<h3>Copy Disk</h3>
+<div><a id="Copy-Disk" href="#Copy-Disk"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Copy Disk</h3></div>
 <div style="position: relative;"><pre>
 dd if=/dev/hdiskX of=/dev/hdiskY bs=1M
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<h3>Resetting Network in VIOS (Virtual I/O Server)</h3>
+<div><a id="Resetting-Network-in-VIOS-(Virtual-I/O-Server)" href="#Resetting-Network-in-VIOS-(Virtual-I/O-Server)"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Resetting Network in VIOS (Virtual I/O Server)</h3></div>
 <p>Delete all existing network devices and from the VIOS command line interface:</p>
 <div style="position: relative;"><pre>
 lsdev | grep -i &quot;Shared Ethernet&quot;
@@ -63,7 +63,7 @@ mkvdev -sea ent0 -vadapter ent2,ent3,ent4,ent5 -default ent2 -defaultid 1 (where
 mktcpip -hostname intvios1 -inetaddr 9.5.30.50 -interface en6 -gateway 9.5.30.1 -nsrvaddr 9.10.244.200 -nsrvdomain rchland.ibm.com -netmask 255.255.255.0 -start
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
 <p>Reference: <a href="https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server">https://www.ibm.com/support/pages/resetting-network-vios-virtual-io-server</a></p>
-<h3>Disk Assignment</h3>
+<div><a id="Disk-Assignment" href="#Disk-Assignment"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">Disk Assignment</h3></div>
 <div style="position: relative;"><pre>
 To assign hard disk :
 lsdev | grep hdisk
@@ -73,7 +73,7 @@ mkvg -f -vg rootvg_RHELlpar hdisk1
 mklv -lv RHELlpar_client rootvg_RHELlpar 745G
 mkvdev -vdev RHELlpar_client -vadapter vhost0
 </pre><div class="box is-hidden clipboard-box" style="position: absolute; top: 0; right: 0;"><span class="icon"><i class="far fa-clipboard"></i><i class="fas fa-clipboard-check is-hidden"></i><i class="fas fa-check is-hidden"></i></span></div></div>
-<h3>AIX Logical Volume Manager (LVM)</h3>
+<div><a id="AIX-Logical-Volume-Manager-(LVM)" href="#AIX-Logical-Volume-Manager-(LVM)"><i class="far fa-link" aria-hidden="true" style="display:inline-block; margin-right:10px;"></i></a><h3 style="display:inline-block">AIX Logical Volume Manager (LVM)</h3></div>
 <p><a href="http://www.datadisk.co.uk/html_docs/hp/aix_lvm.htm">http://www.datadisk.co.uk/html_docs/hp/aix_lvm.htm</a></p>
 <script>
   gtag('config', 'G-E39TBGKLH1, {'page_path': 'Contents/AIX/vios.html'});
