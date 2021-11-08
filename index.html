@@ -76,7 +76,6 @@
       $(".content").load(URL, function(responseTxt, statusTxt, xhr){
         $(document).attr("title", $(".content h1").text() + " - Asis Patra");
     
-      console.log('CALLED')
       if (window.location.href.includes('url=')) {
         history.pushState({}, '', window.location.href.split("url=")[0] + "url=" + URL+jumpto);
       } else {
