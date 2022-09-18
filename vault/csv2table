@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ $# -ne 1 ] ; then
+  echo "Usage: $0 < CSV_FILE >" 1>&2
+  exit 1
+fi
+INPUT_FILE="$1"
+if [ ! -f "${INPUT_FILE}" ]; then
+  echo "File: ${INPUT_FILE} not found!" 1>&2
+  exit 2
+fi
+
+INPUT="${INPUT_FILE}"
+HEADER=$(cat $INPUT | sed -n '1p')
+DATA=$(cat $INPUT | sed -n '2,$p')
+COLS=$(echo "$HEADER" | sed 's/,/ , /g')
+
+DATA=$(echo "$DATA" | sed 's/,/ , /g')
+TABLE=$(echo "$DATA" | column -s, -t -o '|' -N "$COLS" -R "$COLS")
+TABLE_HEADER=$(echo "$TABLE" | sed -n '1p')
+LINES=$(echo "${TABLE_HEADER}" | sed 's/[^|]/-/g' | tr '|' '+')
+TABLE_DATA=$(echo "$TABLE" | sed -n '2,$p')
+
+echo "$LINES"
+echo "$TABLE_HEADER"
+echo "$LINES"
+echo "$TABLE_DATA"
+echo "$LINES"
