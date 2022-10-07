@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [ $# -ne 2 ] ; then
+  echo "Usage: '$0 <SRC> <DEST>'"
+  exit 1
+fi
+
+SRC=$1
+DEST=$2
+grep -rnw "${SRC}" * > /dev/null
+CONTENT_STATUS=$?
+ls ${SRC} > /dev/null 2>&1
+FILE_STATUS=$?
+[ ${CONTENT_STATUS} -ne 0 -a ${FILE_STATUS} -ne 0 ] && echo "# No instances found!" && exit
+[ ${CONTENT_STATUS} -eq 0 ] && echo "### ALL Contents:" && grep -rnw "${SRC}" * && echo
+[ ${FILE_STATUS} -eq 0 ] && echo "### File: ${SRC}" && echo
+read -p "Continue ([y]es or [N]o)? : " INPUT
+
+[ $(echo ${INPUT} | grep -e "^[Yy][Ee][Ss]$" -e "^[Yy]$" > /dev/null ; echo $?) -ne 0 ] && exit
+if [ ${CONTENT_STATUS} -eq 0 ] ; then
+  echo
+  echo "### All Content Files:"
+  for FILE_NAME in $(grep -rnw "${SRC}" * | cut -d ':' -f1 | sort | uniq) ; do
+    echo $FILE_NAME
+    sed -i 's/'${SRC}'/'${DEST}'/g' $FILE_NAME
+  done
+fi
+if [ ${FILE_STATUS} -eq 0 ] ; then
+  echo
+  echo "### Rename File ${SRC} to ${DEST}:"
+  echo "$ mv ${SRC} ${DEST}"
+  mv ${SRC} ${DEST}
+fi
