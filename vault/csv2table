@@ -11,8 +11,8 @@ if [ ! -f "${INPUT_FILE}" ]; then
 fi
 
 INPUT="${INPUT_FILE}"
-HEADER=$(cat $INPUT | sed -n '1p')
-DATA=$(cat $INPUT | sed -n '2,$p')
+HEADER=$(cat $INPUT | sed -n '1p' | sed 's/$/,/')
+DATA=$(cat $INPUT | sed -n '2,$p' | sed 's/$/,/')
 COLS=$(echo "$HEADER" | sed 's/,/ , /g')
 
 DATA=$(echo "$DATA" | sed 's/,/ , /g')
@@ -21,8 +21,10 @@ TABLE_HEADER=$(echo "$TABLE" | sed -n '1p')
 LINES=$(echo "${TABLE_HEADER}" | sed 's/[^|]/-/g' | tr '|' '+')
 TABLE_DATA=$(echo "$TABLE" | sed -n '2,$p')
 
+(echo
 echo "$LINES"
 echo "$TABLE_HEADER"
 echo "$LINES"
 echo "$TABLE_DATA"
 echo "$LINES"
+) | sed 's/..$//'
