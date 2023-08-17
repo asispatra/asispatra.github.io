@@ -10,10 +10,11 @@ DEST=$2
 grep -rnw "${SRC}" * > /dev/null
 CONTENT_STATUS=$?
 ls ${SRC} > /dev/null 2>&1
+find . -name "${SRC}" > /dev/null 2>&1
 FILE_STATUS=$?
 [ ${CONTENT_STATUS} -ne 0 -a ${FILE_STATUS} -ne 0 ] && echo "# No instances found!" && exit
 [ ${CONTENT_STATUS} -eq 0 ] && echo "### ALL Contents:" && grep -rnw "${SRC}" * && echo
-[ ${FILE_STATUS} -eq 0 ] && echo "### File: ${SRC}" && echo
+[ ${FILE_STATUS} -eq 0 ] && echo "### Files:" && find . -name "${SRC}" && echo
 read -p "Continue ([y]es or [N]o)? : " INPUT
 
 [ $(echo ${INPUT} | grep -e "^[Yy][Ee][Ss]$" -e "^[Yy]$" > /dev/null ; echo $?) -ne 0 ] && exit
@@ -28,6 +29,9 @@ fi
 if [ ${FILE_STATUS} -eq 0 ] ; then
   echo
   echo "### Rename File ${SRC} to ${DEST}:"
-  echo "$ mv ${SRC} ${DEST}"
-  mv ${SRC} ${DEST}
+  for FILE_NAME in $(find . -name "${SRC}") ; do
+    DIR=$(dirname $FILE_NAME)
+    echo "$ mv ${DIR}/${SRC} ${DIR}/${DEST}"
+    mv ${DIR}/${SRC} ${DIR}/${DEST}
+  done
 fi
