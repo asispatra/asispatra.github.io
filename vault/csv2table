@@ -21,10 +21,10 @@ TABLE_HEADER=$(echo "$TABLE" | sed -n '1p')
 LINES=$(echo "${TABLE_HEADER}" | sed 's/[^|]/-/g' | tr '|' '+')
 TABLE_DATA=$(echo "$TABLE" | sed -n '2,$p')
 
-(echo
+(
 echo "$LINES"
 echo "$TABLE_HEADER"
 echo "$LINES"
 echo "$TABLE_DATA"
 echo "$LINES"
-) | sed 's/..$//'
+) | sed 's/...$//'
