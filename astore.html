@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Drive</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      const assert = function(condition, message) {
+        if (condition)
+          throw Error('Assert failed: ' + (message || ''));
+      };
+      TOKEN="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";
+      ORG="theasispatra";
+      PER_PAGE=100;
+
+      HOSTNAME="api.github.com";
+      //BASE_URL="https://"+HOSTNAME+"/repos/"+ORG+"/REPO";
+      function BASE_URL() {
+        var REPO=$('#drives option:selected').val();
+        assert(REPO == "Select", "REPO should not be Select");
+        return "https://"+HOSTNAME+"/repos/"+ORG+"/"+REPO;
+      }
+      REPO_SEARCH_URL="https://"+HOSTNAME+"/search/repositories?q=user:"+ORG;
+
+      function rest_api(url, success, o = {}) {
+        var method = "GET";
+        var Accept = "application/vnd.github+json";
+        if (o["method"] !== undefined) {
+          method = o["method"];
+        }
+        if (o["Accept"] !== undefined) {
+          Accept = o["Accept"]
+        }
+        var headers = {
+          "Accept": Accept,
+          "Authorization": "Bearer " + TOKEN,
+          "X-GitHub-Api-Version": "2022-11-28"
+        };
+        if (o["Access-Control-Allow-Origin"] !== undefined) {
+          headers["Access-Control-Allow-Origin"] = o["Access-Control-Allow-Origin"];
+        }
+        if (o["referrer"] !== undefined) {
+          headers["referrer"] = o["referrer"];
+        }
+        //console.log(headers);
+        $.ajax({
+          url: url,
+          method: method,
+          headers: headers,
+          success: function (data, status, xhr) {
+            success(data);
+          },
+        });
+      }
+
+      $(document).ready(function(){
+        rest_api(REPO_SEARCH_URL, function(json){
+          console.log(json);
+          HTML='';
+          for (var i=0; i<json.items.length; i++){
+            var repo = json.items[i].name;
+            HTML+='<option value="'+repo+'">'+repo+'</option>';
+          }
+          $('#drives').append(HTML);
+        });
+
+        $('#scan-drive').click(function(){
+          PAGE=1;
+          //rest_api(BASE_URL()+ "/releases?per_page="+PER_PAGE+"&page="+PAGE, function(data){
+          //rest_api(BASE_URL()+ "/git/refs/tags", function(data){
+          //rest_api(BASE_URL()+ "/tags?per_page="+PER_PAGE+"&page="+PAGE, function(json){
+          rest_api(BASE_URL()+ "/tags", function(json){
+            HTML='<option>Select</option>';
+            for (var i=0; i<json.length; i++){
+              tag_name = json[i].name;
+              HTML+='<option value="'+tag_name+'">'+tag_name+'</option>';
+            }
+            $('#stores').html(HTML);
+          });
+        });
+
+        $('#scan-store').click(function(){
+          var STORE=$('#stores option:selected').val();
+          assert(STORE == "Select", "STORE should not be Select");
+          PAGE=1;
+          rest_api(BASE_URL()+ "/releases/tags/"+STORE+"?per_page="+PER_PAGE+"&page="+PAGE, function(json){
+            elm=$('.content ol');
+            elm.html('');
+            for (var i=0; i<json.assets.length; i++){
+              var asset_name=json.assets[i].name;
+              var asset_url=json.assets[i].url;
+              //console.log(asset_name);
+              elm.append("<li><a href=\"#\" onclick=\"load_asset('"+asset_url+"');\">"+asset_name+"</a></li>");
+            }
+          });
+        });
+
+        $('.modal-close').click(function(){
+          $('.modal').removeClass('is-active');
+        });
+        $('.modal').click(function(){
+          $('.modal').removeClass('is-active');
+        });
+
+
+
+      });
+      function load_asset(url) {
+        console.log(url);
+        $.ajax({
+          url: url,
+          headers: {
+          "Accept": "application/octet-stream",
+          "Authorization": "Bearer " + TOKEN,
+          "X-GitHub-Api-Version": "2022-11-28"
+          },
+          beforeSend: function( xhr ) {
+            console.log(xhr.getAllResponseHeaders())
+          },
+          success: function(data, status, xhr) {
+            console.log(xhr.getAllResponseHeaders())
+          },
+          error: function(xhr) {
+            console.log(xhr.getAllResponseHeaders());
+          }
+        });
+        /*
+        rest_api(url, function(data) {
+          //console.log(data)
+          //const objectURL = URL.createObjectURL(data);
+          //$('#image').attr('src', objectURL);
+          $('.modal').addClass('is-active');
+
+        //}, {"Accept": "application/octet-stream", 'Access-Control-Allow-Origin': '*'});
+        }, {"Accept": "application/octet-stream"});
+        //alert(url);
+        */
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Drive</label>
+        </div>
+        <div class="field-body">
+          <div class="field is-grouped">
+            <p class="control">
+              <div class="select">
+                <select id="drives" name="drives">
+                  <option>Select</option>
+                </select>
+              </div>
+            </p>
+            <p class="control">
+              <button id="scan-drive" class="button">Scan</button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Store</label>
+        </div>
+        <div class="field-body">
+          <div class="field is-grouped">
+            <p class="control">
+              <div class="select">
+                <select id="stores" name="stores">
+                  <option>Select</option>
+                </select>
+              </div>
+            </p>
+            <p class="control">
+              <button id="scan-store" class="button">Scan</button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <ol>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image is-4by3">
+      <img id="image" src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="">
+    </p>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+  </body>
+</html>
