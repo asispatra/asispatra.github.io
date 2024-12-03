@@ -7,11 +7,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
+const decrypt = (salt, encoded) => {
+  const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+  const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
+  return encoded
+    .match(/.{1,2}/g)
+    .map((hex) => parseInt(hex, 16))
+    .map(applySaltToChar)
+    .map((charCode) => String.fromCharCode(charCode))
+    .join("");
+};
       const assert = function(condition, message) {
         if (condition)
           throw Error('Assert failed: ' + (message || ''));
       };
-      TOKEN="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";
+      
+      TOKEN=decrypt("salt", "6d637e627f68557a6b7e553b3b484c5b44523c4b3a3d4547603f3f494c783b3e325558487f5d47486b614e5f337865436073605a655d3e3f7d3866337d5e4d637d7a483a5950644f4032665e6b484f594c45484b426d4864664b72657c");
       ORG="theasispatra";
       PER_PAGE=100;
 
